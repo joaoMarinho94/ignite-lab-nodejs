@@ -16,7 +16,7 @@ describe('Cancel notification', () => {
       recipientId: 'example-recipient-id',
     });
 
-    notificationRepository.create(notification);
+    await notificationRepository.create(notification);
 
     await cancelNotification.execute({ notificationId: notification.id });
 
