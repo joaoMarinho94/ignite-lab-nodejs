@@ -1,5 +1,4 @@
-import { Content } from '@application/entities/content';
-import { Notification } from '@application/entities/notification';
+import { mackeNotification } from '@test/factories/notification-factory';
 import { InMemoryNotificationRepository } from '@test/repositories/in-memory-notifications-repository';
 
 import { CountRecipientNotifications } from '.';
@@ -11,22 +10,16 @@ describe('Cancel notification', () => {
       notificationRepository,
     );
 
-    const notification = new Notification({
-      category: 'social',
-      content: new Content('Nova solicitação de amizade!'),
-      recipientId: 'recipient-1',
-    });
-
-    await notificationRepository.create(notification);
-
-    await notificationRepository.create(notification);
+    await notificationRepository.create(
+      mackeNotification({ recipientId: 'recipient-1' }),
+    );
 
     await notificationRepository.create(
-      new Notification({
-        category: 'social',
-        content: new Content('Nova solicitação de amizade!'),
-        recipientId: 'recipient-2',
-      }),
+      mackeNotification({ recipientId: 'recipient-1' }),
+    );
+
+    await notificationRepository.create(
+      mackeNotification({ recipientId: 'recipient-2' }),
     );
 
     const { count } = await countRecipientNotifications.execute({
