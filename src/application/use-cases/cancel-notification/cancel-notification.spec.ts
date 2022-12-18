@@ -1,4 +1,4 @@
-import { mackeNotification } from '@test/factories/notification-factory';
+import { makeNotification } from '@test/factories/notification-factory';
 import { InMemoryNotificationRepository } from '@test/repositories/in-memory-notifications-repository';
 
 import { CancelNotification } from '.';
@@ -9,7 +9,7 @@ describe('Cancel notification', () => {
     const notificationRepository = new InMemoryNotificationRepository();
     const cancelNotification = new CancelNotification(notificationRepository);
 
-    const notification = mackeNotification();
+    const notification = makeNotification();
 
     await notificationRepository.create(notification);
 

@@ -1,4 +1,4 @@
-import { mackeNotification } from '@test/factories/notification-factory';
+import { makeNotification } from '@test/factories/notification-factory';
 import { InMemoryNotificationRepository } from '@test/repositories/in-memory-notifications-repository';
 
 import { CountRecipientNotifications } from '.';
@@ -11,15 +11,15 @@ describe('Cancel notification', () => {
     );
 
     await notificationRepository.create(
-      mackeNotification({ recipientId: 'recipient-1' }),
+      makeNotification({ recipientId: 'recipient-1' }),
     );
 
     await notificationRepository.create(
-      mackeNotification({ recipientId: 'recipient-1' }),
+      makeNotification({ recipientId: 'recipient-1' }),
     );
 
     await notificationRepository.create(
-      mackeNotification({ recipientId: 'recipient-2' }),
+      makeNotification({ recipientId: 'recipient-2' }),
     );
 
     const { count } = await countRecipientNotifications.execute({

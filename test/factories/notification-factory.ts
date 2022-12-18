@@ -6,7 +6,7 @@ import {
 
 type Override = Partial<NotificationsProps>;
 
-export function mackeNotification(override?: Override) {
+export function makeNotification(override?: Override) {
   return new Notification({
     category: 'social',
     content: new Content('Nova solicitação de amizade!'),
